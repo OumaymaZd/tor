@@ -438,6 +438,7 @@ static const config_var_t option_vars_[] = {
   OBSOLETE("TestingEnableTbEmptyEvent"),
   V(EnforceDistinctSubnets,      BOOL,     "1"),
   V_D(EntryNodes,                ROUTERSET,   NULL),
+  V_D(SelectedCountries,                ROUTERSET,   NULL),
   V(EntryStatistics,             BOOL,     "0"),
   OBSOLETE("TestingEstimatedDescriptorPropagationTime"),
   V_D(ExcludeNodes,              ROUTERSET, NULL),
@@ -1969,6 +1970,7 @@ options_need_geoip_info(const or_options_t *options, const char **reason_out)
   int routerset_usage =
     routerset_needs_geoip(options->EntryNodes) ||
     routerset_needs_geoip(options->ExitNodes) ||
+     routerset_needs_geoip(options->SelectedCountries) ||
     routerset_needs_geoip(options->MiddleNodes) ||
     routerset_needs_geoip(options->ExcludeExitNodes) ||
     routerset_needs_geoip(options->ExcludeNodes) ||
@@ -2021,6 +2023,7 @@ options_transition_affects_guards(const or_options_t *old_options,
   YES_IF_CHANGED_BOOL(FascistFirewall);
   YES_IF_CHANGED_ROUTERSET(ExcludeNodes);
   YES_IF_CHANGED_ROUTERSET(EntryNodes);
+  YES_IF_CHANGED_BOOL(SelectedCountries);
   YES_IF_CHANGED_SMARTLIST(FirewallPorts);
   YES_IF_CHANGED_LINELIST(Bridges);
   YES_IF_CHANGED_LINELIST(ReachableORAddresses);
@@ -2301,6 +2304,7 @@ options_act,(const or_options_t *old_options))
         !routerset_equal(old_options->ExcludeExitNodes,
                          options->ExcludeExitNodes) ||
         !routerset_equal(old_options->EntryNodes, options->EntryNodes) ||
+        !routerset_equal(old_options->SelectedCountries, options->SelectedCountries) ||
         !routerset_equal(old_options->ExitNodes, options->ExitNodes) ||
         !routerset_equal(old_options->HSLayer2Nodes,
                          options->HSLayer2Nodes) ||
