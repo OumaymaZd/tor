@@ -121,6 +121,7 @@ struct or_options_t {
                              * digests, country codes and IP address patterns
                              * of ORs not to use in circuits. But see
                              * StrictNodes above. */
+  struct routerset_t *SelectedCountries;
   struct routerset_t *ExcludeExitNodes;/**< Structure containing nicknames,
                                  * digests, country codes and IP address
                                  * patterns of ORs not to consider as
