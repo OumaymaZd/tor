@@ -197,6 +197,7 @@ static const config_abbrev_t option_abbrevs_[] = {
   PLURAL(AuthDirRejectCC),
   PLURAL(EntryNode),
   PLURAL(ExcludeNode),
+  PLURAL(SelectedCountries),
   PLURAL(FirewallPort),
   PLURAL(LongLivedPort),
   PLURAL(HiddenServiceNode),
